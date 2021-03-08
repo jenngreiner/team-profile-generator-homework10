@@ -1,0 +1,13 @@
+header {
+    background-color: red;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+.card-header {
+    background-color: blue;
+    color: white;
+}
+.card-body {
+    background-color: whitesmoke;
+}
