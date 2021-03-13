@@ -1,14 +1,87 @@
-// command line prompts name, job title, ID, Email, Github
-// I am prompted to enter the team manager’s name, employee ID, email address, and office number
-// WHEN I enter the team manager’s name, employee ID, email address, and office number
-// THEN I am presented with a menu with the option to add an engineer or an intern or to finish building my team
-// WHEN I select the engineer option
-// THEN I am prompted to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
-// WHEN I select the intern option
-// THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
-// // Different icons for each job type
+const inquirer = require('inquirer');
+const fs = require('fs');
+const generate = require('./generateHTML')
+
+// prompt to get manager info
+const promptUser = () =>
+    inquirer.prompt([
+        {
+            name: 'name',
+            type: 'input',
+            message: 'Enter your name.',
+        },
+        {
+            name: 'email',
+            type: 'input',
+            message: 'Enter your email.',
+        },
+        {
+            name: 'id',
+            type: 'input',
+            message: 'Enter your Employee ID.',
+        },
+    ])
+        .then((data) => {
+            fs.writeFileSync('team.html', generate(data));
+        })
+
+promptUser();
+
+// // prompt to get role
+// const role = inquirer.prompt([
+//     {
+//         name: 'role',
+//         type: 'list',
+//         message: 'What is the employees role.',
+//         choices: [
+//             "Engineer",
+//             "Intern",
+//             "Manager",
+//         ]
+//     },
+// ])
 
 
 
-// create html page with employee info in cards
+// // github if engineer
+// if (data.role === "Engineer") {
+    //     inquire.prompt([
+//         {
+//             name: 'github',
+//             type: 'input',
+//             message: 'Enter your GitHub user name.',
+//         },
+//     ])
+//         .then((data) => {
+//             console.log(data);
+//         })
+// } else if
+//     // school if intern
+//     (data.role === "Intern") {
+//     inquire.prompt([
+//         {
+//             name: 'github',
+//             type: 'input',
+//             message: 'Enter your GitHub user name.',
+//         },
+//     ])
+//         .then((data) => {
+//             console.log(data);
+//         })
+// } else if (data.role === "Manager") {
+//     inquire.prompt([
+//         {
+//             name: 'office number',
+//             type: 'input',
+//             message: 'Enter your Office Number.',
+//         },
+//     ])
+//         .then((data) => {
+//             console.log(data);
+//         })
+
+
+// // create html page with employee info in cards
+
+
 
