@@ -1,87 +1,162 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generate = require('./generateHTML')
+const util = require('util')
+const Employee = require('./lib/Employee');
+const Intern = require('./lib/Intern');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
 
-// prompt to get manager info
-const promptUser = () =>
+let team = []
+
+// function to add engineer
+const promptEngineer = () => {
     inquirer.prompt([
         {
             name: 'name',
             type: 'input',
-            message: 'Enter your name.',
+            message: 'Enter the employee name.',
         },
         {
             name: 'email',
             type: 'input',
-            message: 'Enter your email.',
+            message: 'Enter the employee email.',
         },
         {
             name: 'id',
             type: 'input',
-            message: 'Enter your Employee ID.',
+            message: 'Enter the employee ID.',
         },
-    ])
-        .then((data) => {
-            fs.writeFileSync('team.html', generate(data));
-        })
+        {
+            name: 'github',
+            type: 'input',
+            message: 'Enter your GitHub user name.',
+        },
+        {
+            name: 'addEmployee',
+            type: 'confirm',
+            message: 'Do you want to add another employee?',
+        },
+    ]).then((data) => {
+        const engineer = new Engineer(data.name, data.id, data.email, data.github);
+        team.push(engineer);
+        if (data.addEmployee === true) {
+            promptNewEmployee();
+        } else {
+            console.log(team);
+            createFile(team)
+        }
+    })
+}
 
-promptUser();
+// function to add intern 
+const promptIntern = () => {
+    inquirer.prompt([
+        {
+            name: 'name',
+            type: 'input',
+            message: 'Enter the employee name.',
+        },
+        {
+            name: 'email',
+            type: 'input',
+            message: 'Enter the employee email.',
+        },
+        {
+            name: 'id',
+            type: 'input',
+            message: 'Enter the employee ID.',
+        },
+        {
+            name: 'school',
+            type: 'input',
+            message: 'Enter the employee school.',
+        },
+        {
+            name: 'addEmployee',
+            type: 'confirm',
+            message: 'Do you want to add another employee?',
+        },
+    ]).then((data) => {
+        const intern = new Intern(data.name, data.id, data.email, data.school);
+        team.push(intern);
+        if (data.addEmployee === true) {
+            promptNewEmployee();
+        } else {
+            console.log(team);
+            createFile(team)
+        }
+    })
+}
 
-// // prompt to get role
-// const role = inquirer.prompt([
-//     {
-//         name: 'role',
-//         type: 'list',
-//         message: 'What is the employees role.',
-//         choices: [
-//             "Engineer",
-//             "Intern",
-//             "Manager",
-//         ]
-//     },
-// ])
+// function to prompt for adding another employee and calling the correct prompts for the employee type
+const promptNewEmployee = () => {
 
+    const promptRole = inquirer.prompt([
+        {
+            name: 'role',
+            type: 'list',
+            message: 'What is the employees role.',
+            choices: [
+                "Engineer",
+                "Intern",
+            ]
+        },
+    ]).then((data) => {
+        // call function for the right type of employee
+        if (data.role === 'Engineer') {
+            promptEngineer();
+        } else if (data.role === 'Intern') {
+            promptIntern();
+        }
+    })
+}
 
+// function to create HTML
+const createFile = () => {
+    fs.writeFileSync('team.html', generate(team));
+}
 
-// // github if engineer
-// if (data.role === "Engineer") {
-    //     inquire.prompt([
-//         {
-//             name: 'github',
-//             type: 'input',
-//             message: 'Enter your GitHub user name.',
-//         },
-//     ])
-//         .then((data) => {
-//             console.log(data);
-//         })
-// } else if
-//     // school if intern
-//     (data.role === "Intern") {
-//     inquire.prompt([
-//         {
-//             name: 'github',
-//             type: 'input',
-//             message: 'Enter your GitHub user name.',
-//         },
-//     ])
-//         .then((data) => {
-//             console.log(data);
-//         })
-// } else if (data.role === "Manager") {
-//     inquire.prompt([
-//         {
-//             name: 'office number',
-//             type: 'input',
-//             message: 'Enter your Office Number.',
-//         },
-//     ])
-//         .then((data) => {
-//             console.log(data);
-//         })
+// prompt to get manager info
+const promptManager = () =>
+    inquirer.prompt([
+        {
+            name: 'name',
+            type: 'input',
+            message: 'Enter the employee manager name.',
+        },
+        {
+            name: 'email',
+            type: 'input',
+            message: 'Enter the employee manager email.',
+        },
+        {
+            name: 'id',
+            type: 'input',
+            message: 'Enter the employee manager ID.',
+        },
+        {
+            name: 'officeNumber',
+            type: 'input',
+            message: 'Enter the employee manager office number.',
+        },
+        {
+            name: 'addEmployee',
+            type: 'confirm',
+            message: 'Do you want to add another employee?',
+        },
+    ]).then((data) => {
+        // send manager data to manager class constructor
+        const manager = new Manager(data.name, data.id, data.email, data.officeNumber);
+        team.push(manager);
+        // if they said yes, prompt engineer or intern
+        if (data.addEmployee === true) {
+            promptNewEmployee();
+        } else {
+            console.log(team);
+            createFile(team)
+        }
+    })
 
-
-// // create html page with employee info in cards
-
-
-
+promptManager();
+// TODO write html
