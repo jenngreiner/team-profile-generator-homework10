@@ -2,7 +2,7 @@ body {
     background-color: #f0efeb;
 }
 header {
-    background-color: #cb997e;
+    background-color: #AF6B46;
     color: white;
     text-align: center;
     padding: 40px;
@@ -15,13 +15,14 @@ header {
     margin: 30px;
 }
 #manager-header {
-    background-color: #a5a58d;
+    background-color: #89896C;
     color: white;
 }
 #engineer-header {
-    background-color: #ddbea9;
+    background-color: #cb997e;
     color: white;
 }
 #intern-header {
-    background-color: #eddcd2;
+    background-color: #a5a58d;
+    color: white;
 }

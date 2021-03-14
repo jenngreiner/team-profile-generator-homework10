@@ -18,7 +18,7 @@ const generateHTML = (team) => {
         <div>
         <ul class="list-group list-group-flush">
         <li class="list-group-item"><b>ID:</b> ${manager.getId()}</li>
-        <li class="list-group-item"><b>Email:</b> ${manager.getEmail()}</li>
+        <li class="list-group-item"><b>Email:</b> <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
         <li class="list-group-item"><b>Office Number:</b> ${manager.getOfficeNumber()}</li>
         </ul>
         </div></div>
@@ -38,8 +38,8 @@ const generateHTML = (team) => {
         <div>
         <ul class="list-group list-group-flush">
         <li class="list-group-item"><b>ID:</b> ${engineer.getId()}</li>
-        <li class="list-group-item"><b>Email:</b> ${engineer.getEmail()}</li>
-        <li class="list-group-item"><b>GitHub:</b> ${engineer.getGitHub()}</li>
+        <li class="list-group-item"><b>Email:</b> <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
+        <li class="list-group-item"><b>GitHub:</b> <a href="https://github.com/${engineer.getGitHub()}">${engineer.getGitHub()}</a></li>
         </ul>
         </div></div>
         `
@@ -59,7 +59,7 @@ const generateHTML = (team) => {
         <div>
         <ul class="list-group list-group-flush">
         <li class="list-group-item"><b>ID:</b> ${intern.getId()}</li>
-        <li class="list-group-item"><b>Email:</b> ${intern.getEmail()}</li>
+        <li class="list-group-item"><b>Email:</b> <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
         <li class="list-group-item"><b>School:</b> ${intern.getSchool()}</li>
         </ul>
         </div></div>`
