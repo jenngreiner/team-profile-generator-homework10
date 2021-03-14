@@ -1,13 +1,23 @@
+body {
+    background-color: #f0efeb;
+}
 header {
-    background-color: red;
+    background-color: #cb997e;
     color: white;
     text-align: center;
-    padding: 20px;
+    padding: 40px;
 }
-.card-header {
-    background-color: blue;
+.card {
+    margin: 30px;
+}
+#manager-header {
+    background-color: #a5a58d;
     color: white;
 }
-.card-body {
-    background-color: whitesmoke;
+#engineer-header {
+    background-color: #ddbea9;
+    color: white;
+}
+#intern-header {
+    background-color: #eddcd2;
 }

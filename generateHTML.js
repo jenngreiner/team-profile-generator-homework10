@@ -11,15 +11,15 @@ const generateHTML = (team) => {
         manager.getOfficeNumber();
         manager.getRole();
         return `<div class="card" style="width: 18rem;">
-        <div class="card-header">
-        <h5 class="card-title">${manager.getName()}</h5><img src="..." class="card-img-top" alt="...">
+        <div class="card-header" id="manager-header">
+        <h5 class="card-title"><b>${manager.getName()}</b></h5>
         <p class="card-text">${manager.getRole()}</p>
         </div>
-        <div class="card card-body" style="margin: auto;">
+        <div>
         <ul class="list-group list-group-flush">
-        <li class="list-group-item">ID: ${manager.getId()}</li>
-        <li class="list-group-item">Email: ${manager.getEmail()}</li>
-        <li class="list-group-item">Office Number: ${manager.getOfficeNumber()}</li>
+        <li class="list-group-item"><b>ID:</b> ${manager.getId()}</li>
+        <li class="list-group-item"><b>Email:</b> ${manager.getEmail()}</li>
+        <li class="list-group-item"><b>Office Number:</b> ${manager.getOfficeNumber()}</li>
         </ul>
         </div></div>
         `
@@ -28,18 +28,18 @@ const generateHTML = (team) => {
         engineer.getName();
         engineer.getId();
         engineer.getEmail();
-        engineer.getGithub();
+        engineer.getGitHub();
         engineer.getRole();
-        return `<div class="card" style="width: 18rem;">
-        <div class="card-header">
-        <h5 class="card-title">${engineer.getName()}</h5><img src="..." class="card-img-top" alt="...">
+        return `<div class="card " style="width: 18rem;">
+        <div class="card-header" id="engineer-header">
+        <h5 class="card-title"><b>${engineer.getName()}</b></h5>
         <p class="card-text">${engineer.getRole()}</p>
         </div>
-        <div class="card card-body" style="margin: auto;">
+        <div>
         <ul class="list-group list-group-flush">
-        <li class="list-group-item">ID: ${engineer.getId()}</li>
-        <li class="list-group-item">Email: ${engineer.getEmail()}</li>
-        <li class="list-group-item">GitHub: ${engineer.getGithub()}</li>
+        <li class="list-group-item"><b>ID:</b> ${engineer.getId()}</li>
+        <li class="list-group-item"><b>Email:</b> ${engineer.getEmail()}</li>
+        <li class="list-group-item"><b>GitHub:</b> ${engineer.getGitHub()}</li>
         </ul>
         </div></div>
         `
@@ -52,15 +52,15 @@ const generateHTML = (team) => {
         intern.getRole();
 
         return `<div class="card" style="width: 18rem;">
-        <div class="card-header">
-        <h5 class="card-title">${intern.getName()}</h5><img src="..." class="card-img-top" alt="...">
+        <div class="card-header" id="intern-header">
+        <h5 class="card-title">${intern.getName()}</b></h5>
         <p class="card-text">${intern.getRole()}</p>
         </div>
-        <div class="card card-body" style="margin: auto;">
+        <div>
         <ul class="list-group list-group-flush">
-        <li class="list-group-item">ID: ${intern.getId()}</li>
-        <li class="list-group-item">Email: ${intern.getEmail()}</li>
-        <li class="list-group-item">School: ${intern.getSchool()}</li>
+        <li class="list-group-item"><b>ID:</b> ${intern.getId()}</li>
+        <li class="list-group-item"><b>Email:</b> ${intern.getEmail()}</li>
+        <li class="list-group-item"><b>School:</b> ${intern.getSchool()}</li>
         </ul>
         </div></div>`
     }
