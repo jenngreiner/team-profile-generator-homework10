@@ -1,71 +1,85 @@
-const generateHTML = (data) => {
-    return `
-                    <div class="card-header">
-                        <h5 class="card-title">${data.name}</h5><img src="..." class="card-img-top" alt="...">
-                        <p class="card-text">${data.role}</p>
-                    </div >
-    <div class="card-body">
-        <div class="card" style="margin: auto;">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">ID: ${data.id}</li>
-                <li class="list-group-item">Email: ${data.email}</li>
-                <li class="list-group-item">GitHub: ${data.github}</li>
-                <li class="list-group-item">Office Number: ${data.officeNumber}</li>
-                <li class="list-group-item">School: ${data.school}</li>
-            </ul>
+const Employee = require('./lib/Employee')
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+const Manager = require("./lib/Manager");
+
+const generateHTML = (team) => {
+    const createManager = (manager) => {
+        manager.getName();
+        manager.getId();
+        manager.getEmail();
+        manager.getOfficeNumber();
+        manager.getRole();
+        return `<div class="card" style="width: 18rem;">
+        <div class="card-header">
+        <h5 class="card-title">${manager.getName()}</h5><img src="..." class="card-img-top" alt="...">
+        <p class="card-text">${manager.getRole()}</p>
         </div>
-    </div>
-                </div >
-            </div >
-        </div >
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-        <script src="./Assets/js/script.js"></script>
-    
-    
-    </body >
-    
-    </html > `}
+        <div class="card card-body" style="margin: auto;">
+        <ul class="list-group list-group-flush">
+        <li class="list-group-item">ID: ${manager.getId()}</li>
+        <li class="list-group-item">Email: ${manager.getEmail()}</li>
+        <li class="list-group-item">Office Number: ${manager.getOfficeNumber()}</li>
+        </ul>
+        </div></div>
+        `
+    }
+    const createEngineer = (engineer) => {
+        engineer.getName();
+        engineer.getId();
+        engineer.getEmail();
+        engineer.getGithub();
+        engineer.getRole();
+        return `<div class="card" style="width: 18rem;">
+        <div class="card-header">
+        <h5 class="card-title">${engineer.getName()}</h5><img src="..." class="card-img-top" alt="...">
+        <p class="card-text">${engineer.getRole()}</p>
+        </div>
+        <div class="card card-body" style="margin: auto;">
+        <ul class="list-group list-group-flush">
+        <li class="list-group-item">ID: ${engineer.getId()}</li>
+        <li class="list-group-item">Email: ${engineer.getEmail()}</li>
+        <li class="list-group-item">GitHub: ${engineer.getGithub()}</li>
+        </ul>
+        </div></div>
+        `
+    }
+    const createIntern = (intern) => {
+        intern.getName();
+        intern.getId();
+        intern.getEmail();
+        intern.getSchool();
+        intern.getRole();
+
+        return `<div class="card" style="width: 18rem;">
+        <div class="card-header">
+        <h5 class="card-title">${intern.getName()}</h5><img src="..." class="card-img-top" alt="...">
+        <p class="card-text">${intern.getRole()}</p>
+        </div>
+        <div class="card card-body" style="margin: auto;">
+        <ul class="list-group list-group-flush">
+        <li class="list-group-item">ID: ${intern.getId()}</li>
+        <li class="list-group-item">Email: ${intern.getEmail()}</li>
+        <li class="list-group-item">School: ${intern.getSchool()}</li>
+        </ul>
+        </div></div>`
+    }
+
+    const cardArray = [];
+
+    // filter to get mgr, int, eng to push cards to this array
+    cardArray.push(team.filter(item => item.getRole() === 'Manager').map(newManager => createManager(newManager)));
+    cardArray.push(team.filter(item => item.getRole() === 'Engineer').map(newEngineer => createEngineer(newEngineer)));
+    cardArray.push(team.filter(item => item.getRole() === 'Intern').map(newIntern => createIntern(newIntern)));
+
+    return cardArray.join('');
+};
 
 
 
-const createManager = (manager) => {
-    manager.getName();
-    manager.getId();
-    manager.getEmail();
-    manager.getOfficeNumber();
-    manager.getRole();
-    `
-    `
-}
-const createEngineer = (engineer) => {
-    engineer.name;
-    engineer.id;
-    engineer.email;
-    engineer.getOfficeNumber();
-    `
-    `
-}
-const createIntern = (intern) => {
-    intern.name;
-    intern.id;
-    intern.email;
-    intern.getOfficeNumber();
-
-}
-
-cardArray = [];
-
-// filter to get mgr, int, eng to push cards to this array
-cardArray.push(team.filter(employee => Employee.getRole() === 'Manager').map(newManager => createManager(newManager)).join(''));
-cardArray.push(team.filter(employee => Employee.getRole() === 'Intern').map(newIntern => createIntern(newIntern)).join(''));
-cardArray.push(team.filter(employee => Employee.getRole() === 'Engineer').map(newEngineer => createEngineer(newEngineer)).join(''));
-
-
-
-return cardArray.join('');
 
 module.exports = team => {
-    `<!DOCTYPE html>
+    return `<!DOCTYPE html>
     <html lang="en">
     
     <head>
@@ -85,5 +99,11 @@ module.exports = team => {
         </header>
         <div class="container">
             <div class="row">
-                <div class="card" style="width: 18rem;">${generateHTML(team)}`
+                ${generateHTML(team)}
+            </div >
+        </div >
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="./Assets/js/script.js"></script>
+    </body>
+    </html> `
 };

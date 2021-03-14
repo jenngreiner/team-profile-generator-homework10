@@ -7,7 +7,7 @@ const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 
-let team = []
+const team = []
 
 // function to add engineer
 const promptEngineer = () => {
@@ -113,7 +113,7 @@ const promptNewEmployee = () => {
 }
 
 // function to create HTML
-const createFile = () => {
+const createFile = (team) => {
     fs.writeFileSync('team.html', generate(team));
 }
 
@@ -159,4 +159,3 @@ const promptManager = () =>
     })
 
 promptManager();
-// TODO write html
