@@ -53,7 +53,7 @@ const generateHTML = (team) => {
 
         return `<div class="card" style="width: 18rem;">
         <div class="card-header" id="intern-header">
-        <h5 class="card-title">${intern.getName()}</b></h5>
+        <h5 class="card-title"><b>${intern.getName()}</b></h5>
         <p class="card-text">${intern.getRole()}</p>
         </div>
         <div>
