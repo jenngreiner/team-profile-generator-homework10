@@ -4,7 +4,7 @@
 ## Description
 Node.js command-line application that takes information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each person. Click the link below for a video walkthrough.
 
-**![Team Builder Video Walkthrough](wmgsmiZvTOdJ4Vrf8pSBjFPu_fiZqX/view)**
+**![Team Builder Video Walkthrough](https://drive.google.com/file/d/10IwmgsmiZvTOdJ4Vrf8pSBjFPu_fiZqX/view?usp=sharing)**
 
 
 ## Table of Contents
